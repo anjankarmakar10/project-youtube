@@ -1,9 +1,11 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
 
 import ReduxProvider from "./ReduxProvider";
-import Sidebar from "@/components/Sidebar";
+import ReactQueryProvider from "./ReactQueryProvider";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -16,18 +18,15 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          <div className="max-h-screen flex flex-col">
-            <Navbar />
-            <div className="grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
-              <Sidebar />
-              <div className="overflow-x-hidden px-8 pb-4">
-                <div className="sticky top-0 bg-white z-10 pb-4">
-                  <div>Cetagory</div>
-                </div>
-                {children}
+          <ReactQueryProvider>
+            <div className="max-h-screen flex flex-col">
+              <Navbar />
+              <div className="grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
+                <Sidebar />
+                <div className="overflow-x-hidden px-8 pb-4">{children}</div>
               </div>
             </div>
-          </div>
+          </ReactQueryProvider>
         </ReduxProvider>
       </body>
     </html>
