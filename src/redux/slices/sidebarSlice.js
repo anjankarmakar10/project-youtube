@@ -5,8 +5,13 @@ const sidebarSlice = createSlice({
   initialState: {
     isLargeOpen: true,
     isSmallOpen: false,
+    isWatchPage: false,
   },
   reducers: {
+    wtachPage: (state) => {
+      state.isWatchPage = true;
+    },
+
     toggle: (state) => {
       if (isScreenSmall()) {
         state.isSmallOpen = !state.isSmallOpen;
@@ -28,6 +33,6 @@ function isScreenSmall() {
   return window.innerWidth < 1024;
 }
 
-export const { toggle, close } = sidebarSlice.actions;
+export const { toggle, close, wtachPage } = sidebarSlice.actions;
 
 export default sidebarSlice.reducer;

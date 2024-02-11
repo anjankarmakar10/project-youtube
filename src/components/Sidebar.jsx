@@ -3,7 +3,9 @@ import { useSelector } from "react-redux";
 import { NavbarFirstSection } from "./NavbarFirstSection";
 
 const Sidebar = () => {
-  const { isLargeOpen, isSmallOpen } = useSelector((state) => state.sidebar);
+  const { isLargeOpen, isSmallOpen, isWatchPage } = useSelector(
+    (state) => state.sidebar
+  );
 
   return (
     <>

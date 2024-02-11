@@ -4,7 +4,9 @@ import useChannelInfo from "@/hooks/useChannelIfno";
 import { formatTimeAgo } from "@/utils/formatTimeAgo";
 import Image from "next/image";
 import { useState } from "react";
-
+import { close } from "@/redux/slices/sidebarSlice";
+import { useDispatch } from "react-redux";
+import Link from "next/link";
 const VIEW_FORMATTER = new Intl.NumberFormat(undefined, {
   notation: "compact",
 });
@@ -13,7 +15,7 @@ const VideoCard = ({ video }) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   // const videoRef = useRef(null);
 
-  console.log(video);
+  const discpatch = useDispatch();
 
   const { title, thumbnails, channelId, publishedAt } = video.snippet;
   const { viewCount } = video.statistics;
@@ -34,13 +36,21 @@ const VideoCard = ({ video }) => {
   //
   // }, [isVideoPlaying]);
 
+  const handleCloseMenu = () => {
+    discpatch(close());
+  };
+
   return (
     <div
       className="flex flex-col gap-2"
       onMouseEnter={() => setIsVideoPlaying(true)}
       onMouseLeave={() => setIsVideoPlaying(false)}
     >
-      <a href={`/watch?v=${video.id}`} className="relative aspect-video">
+      <Link
+        onClick={handleCloseMenu}
+        href={`/watch?v=${video.id}`}
+        className="relative aspect-video"
+      >
         <Image
           fill
           loading="lazy"
@@ -61,14 +71,14 @@ const VideoCard = ({ video }) => {
           playsInline
           src={videoUrl}
         /> */}
-      </a>
+      </Link>
       <div className="flex gap-2">
         {isLoading ? (
           <div className="flex-shrink-0">
             <div className="rounded-full bg-gray-200 w-12 h-12 animate-pulse"></div>
           </div>
         ) : (
-          <a href={`/channel/@${channelId}`} className="flex-shrink-0">
+          <Link href={`/channel/@${channelId}`} className="flex-shrink-0">
             <Image
               width={48}
               height={48}
@@ -76,19 +86,23 @@ const VideoCard = ({ video }) => {
               src={channel?.thumbnails.default.url}
               alt={channel?.title}
             />
-          </a>
+          </Link>
         )}
 
         <div className="flex flex-col">
-          <a href={`/watch?v=${video.id}`} className="font-bold">
+          <Link
+            onClick={handleCloseMenu}
+            href={`/watch?v=${video.id}`}
+            className="font-bold"
+          >
             {title}
-          </a>
-          <a
+          </Link>
+          <Link
             href={`/channel/@${channelId}`}
             className="text-secondary-text text-sm"
           >
             {channel?.title}
-          </a>
+          </Link>
           <div className="text-secondary-text text-sm">
             {VIEW_FORMATTER.format(viewCount)} Views •{" "}
             {formatTimeAgo(publishedAt)}
