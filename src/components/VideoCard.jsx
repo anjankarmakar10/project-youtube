@@ -19,7 +19,7 @@ const VideoCard = ({ video }) => {
   const { viewCount } = video.statistics;
   const { maxres } = thumbnails;
 
-  const { data } = useChannelInfo(channelId);
+  const { data, isLoading } = useChannelInfo(channelId);
 
   const channel = data?.items[0]?.snippet;
 
@@ -63,15 +63,22 @@ const VideoCard = ({ video }) => {
         /> */}
       </a>
       <div className="flex gap-2">
-        <a href={`/channel/@${channelId}`} className="flex-shrink-0">
-          <Image
-            width={48}
-            height={48}
-            className="rounded-full"
-            src={channel?.thumbnails.default.url}
-            alt={channel?.title}
-          />
-        </a>
+        {isLoading ? (
+          <div className="flex-shrink-0">
+            <div className="rounded-full bg-gray-200 w-12 h-12 animate-pulse"></div>
+          </div>
+        ) : (
+          <a href={`/channel/@${channelId}`} className="flex-shrink-0">
+            <Image
+              width={48}
+              height={48}
+              className="rounded-full"
+              src={channel?.thumbnails.default.url}
+              alt={channel?.title}
+            />
+          </a>
+        )}
+
         <div className="flex flex-col">
           <a href={`/watch?v=${video.id}`} className="font-bold">
             {title}
