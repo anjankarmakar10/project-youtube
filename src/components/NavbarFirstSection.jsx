@@ -1,14 +1,25 @@
+"use client";
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import Button from "@/components/button";
+import { useDispatch } from "react-redux";
+import { toggle } from "@/redux/slices/sidebarSlice";
 export function NavbarFirstSection({ hidden = false }) {
+  const dispatch = useDispatch();
+
   return (
     <div
       className={`${
         hidden ? "hidden" : "flex"
       } items-center gap-4 flex-shrink-0`}
     >
-      <Button onClick={() => {}} size="icon" variant={"ghost"}>
+      <Button
+        onClick={() => {
+          dispatch(toggle());
+        }}
+        size="icon"
+        variant={"ghost"}
+      >
         <Menu />
       </Button>
       <Link className="w-[90px]" href="/">

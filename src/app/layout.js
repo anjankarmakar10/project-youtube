@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 import ReduxProvider from "./ReduxProvider";
+import Sidebar from "@/components/Sidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -15,8 +16,18 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <ReduxProvider>
-          <Navbar />
-          {children}
+          <div className="max-h-screen flex flex-col">
+            <Navbar />
+            <div className="grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
+              <Sidebar />
+              <div className="overflow-x-hidden px-8 pb-4">
+                <div className="sticky top-0 bg-white z-10 pb-4">
+                  <div>Cetagory</div>
+                </div>
+                {children}
+              </div>
+            </div>
+          </div>
         </ReduxProvider>
       </body>
     </html>
