@@ -21,9 +21,11 @@ export default function RootLayout({ children }) {
           <ReactQueryProvider>
             <div className="max-h-screen flex flex-col">
               <Navbar />
-              <div className="grid grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
+              <div className="flex grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
                 <Sidebar />
-                <div className="overflow-x-hidden px-8 pb-4">{children}</div>
+                <div className="overflow-x-hidden flex-1 px-8 pb-4">
+                  {children}
+                </div>
               </div>
             </div>
           </ReactQueryProvider>

@@ -7,15 +7,6 @@ const Sidebar = () => {
 
   return (
     <>
-      <aside
-        className={`sticky top-0 overflow-y-auto scrollbar-hidden pb-4 flex flex-col ml-1   ${
-          isLargeOpen ? "lg:hidden" : "lg:flex"
-        } 
-      `}
-      >
-        Small Sidebar
-      </aside>
-
       {isSmallOpen && (
         <div
           onClick={close}
