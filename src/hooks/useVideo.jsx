@@ -1,15 +1,15 @@
 import { API_KEY, BASE_URL } from "@/utils/constants";
 import { useQuery } from "@tanstack/react-query";
 
-const useChannelInfo = (channelId) => {
+const useVideo = (videoId) => {
   const getData = () =>
     fetch(
-      `${BASE_URL}/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=${API_KEY}`
+      `${BASE_URL}/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${videoId}&key=${API_KEY}`
     ).then((res) => res.json());
 
   return useQuery({
-    queryKey: ["channels", channelId],
+    queryKey: ["video", videoId],
     queryFn: getData,
   });
 };
-export default useChannelInfo;
+export default useVideo;

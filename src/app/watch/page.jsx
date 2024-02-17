@@ -1,11 +1,14 @@
 "use client";
 
+import VideoDetails from "@/components/VideoDetails";
 import { close, wtachPage } from "@/redux/slices/sidebarSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-const WatchPage = ({ params }) => {
+const WatchPage = ({ searchParams }) => {
   const discpatch = useDispatch();
+
+  const videoId = searchParams.v;
 
   useEffect(() => {
     discpatch(close());
@@ -17,12 +20,13 @@ const WatchPage = ({ params }) => {
       <div className=" md:basis-[747px] md:px-6 md:pt-6">
         <iframe
           className="w-full aspect-video rounded-2xl"
-          src="https://www.youtube.com/embed/k__sMa1nopM?si=7lI16Loo7Jy7zSFO"
+          src={"https://www.youtube.com/embed/" + videoId + "?autoplay=1"}
           title="YouTube video player"
-          allow="autoplay"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
-          frameborder="0"
+          autoPlay
         ></iframe>
+        <VideoDetails videoId={videoId} />
       </div>
       <div className=" md:flex-1 md:pr-6 md:pt-6 ">sdf</div>
     </div>
