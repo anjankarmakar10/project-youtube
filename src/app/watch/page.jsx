@@ -1,6 +1,7 @@
 "use client";
 
 import VideoDetails from "@/components/VideoDetails";
+import VideoSidebar from "@/components/VideoSidebar";
 import { close, wtachPage } from "@/redux/slices/sidebarSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -28,7 +29,9 @@ const WatchPage = ({ searchParams }) => {
         ></iframe>
         <VideoDetails videoId={videoId} />
       </div>
-      <div className=" md:flex-1 md:pr-6 md:pt-6 ">sdf</div>
+      <div className=" md:flex-1 md:pr-6 md:pt-6 ">
+        <VideoSidebar />
+      </div>
     </div>
   );
 };
