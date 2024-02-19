@@ -75,7 +75,7 @@ const SearchBar = ({ showFullWidthSearch }) => {
         </div>
       </form>
 
-      {active | searchQuery && (
+      {active | searchQuery ? (
         <ul className="absolute right-4 left-4  top-14 rounded-2xl z-30  pt-4 pb-2 bg-slate-100 shadow-2xl md:right-[34%] md:left-[27%] ">
           {suggestion.map((item) => (
             <li
@@ -86,7 +86,7 @@ const SearchBar = ({ showFullWidthSearch }) => {
             </li>
           ))}
         </ul>
-      )}
+      ) : null}
     </>
   );
 };

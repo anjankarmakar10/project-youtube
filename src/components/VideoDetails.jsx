@@ -3,15 +3,21 @@
 import useVideo from "@/hooks/useVideo";
 import ChannelInfo from "./ChannelInfo";
 import Button from "./Button";
-import { MoreHorizontal, Share, Share2, ThumbsDown } from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
+import formatNumber from "@/utils/formatNumber";
+import formatePublishDate from "@/utils/formatePublishDate";
+import { useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 const VideoDetails = ({ videoId }) => {
   const { data, isLoading } = useVideo(videoId);
+  const [showDesc, setShowDese] = useState(false);
 
   if (isLoading) return <div>Loading</div>;
 
   const video = data?.items[0];
-  const { title, description, channelId } = video?.snippet;
+  const { title, description, channelId, publishedAt } = video?.snippet;
+  const { commentCount, likeCount, viewCount } = video?.statistics;
 
   return (
     <section className="my-3 flex flex-col gap-3">
@@ -31,7 +37,7 @@ const VideoDetails = ({ videoId }) => {
               >
                 <path d="M18.77,11h-4.23l1.52-4.94C16.38,5.03,15.54,4,14.38,4c-0.58,0-1.14,0.24-1.52,0.65L7,11H3v10h4h1h9.43 c1.06,0,1.98-0.67,2.19-1.61l1.34-6C21.23,12.15,20.18,11,18.77,11z M7,20H4v-8h3V20z M19.98,13.17l-1.34,6 C18.54,19.65,18.03,20,17.43,20H8v-8.61l5.6-6.06C13.79,5.12,14.08,5,14.38,5c0.26,0,0.5,0.11,0.63,0.3 c0.07,0.1,0.15,0.26,0.09,0.47l-1.52,4.94L13.18,12h1.35h4.23c0.41,0,0.8,0.17,1.03,0.46C19.92,12.61,20.05,12.86,19.98,13.17z"></path>
               </svg>
-              42.k
+              {formatNumber(likeCount)}
             </Button>
             <Button className="font-medium h-9 px-4 text-sm rounded-full items-center flex gap-[6px] rounded-l-none ">
               <svg height="24" viewBox="0 0 24 24" width="24" focusable="false">
@@ -58,6 +64,35 @@ const VideoDetails = ({ videoId }) => {
           </Button>
         </div>
       </div>
+      <section className="bg-[rgba(0,0,0,0.05)] rounded-xl p-3 text-sm relative">
+        <div className="flex items-center gap-[6px]  text-[#0f0f0f] font-semibold">
+          {formatNumber(viewCount)} views {formatePublishDate(publishedAt)}
+        </div>
+        <article
+          className={twMerge(
+            `overflow-hidden  relative`,
+            !showDesc && "mask max-h-[60px]"
+          )}
+        >
+          {description}
+        </article>
+
+        {showDesc ? (
+          <button
+            onClick={() => setShowDese(false)}
+            className="font-semibold  mt-10 p-0 "
+          >
+            Show less
+          </button>
+        ) : (
+          <button
+            onClick={() => setShowDese(true)}
+            className="absolute font-semibold left-[270px] bottom-3"
+          >
+            ...more
+          </button>
+        )}
+      </section>
     </section>
   );
 };

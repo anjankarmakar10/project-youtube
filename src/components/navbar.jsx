@@ -13,7 +13,6 @@ const Navbar = () => {
   return (
     <header className="flex justify-between gap-8 lg:gap-16 pt-2 mb-6 px-4 items-center relative sm:static">
       <NavbarFirstSection hidden={showFullWidthSearch} />
-
       {showFullWidthSearch && (
         <Button
           onClick={() => setShowFullWidthSearch(false)}
@@ -23,9 +22,7 @@ const Navbar = () => {
           <ArrowLeft />
         </Button>
       )}
-
       <SearchBar showFullWidthSearch={showFullWidthSearch} />
-
       <div
         className={`${
           showFullWidthSearch ? "hidden" : "flex"

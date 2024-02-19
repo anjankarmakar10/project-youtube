@@ -26,3 +26,20 @@
 .ytp-chrome-top:hover {
   opacity: 1;
 }
+
+.mask {
+  mask-image: linear-gradient(
+      to top,
+      transparent 0%,
+      transparent 2rem,
+      rgb(0, 0, 0) 2rem,
+      rgb(0, 0, 0) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgb(0, 0, 0) 0%,
+      rgb(0, 0, 0) 237px,
+      transparent 261px,
+      transparent 100%
+    );
+}
