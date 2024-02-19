@@ -5,13 +5,10 @@ import ChannelInfo from "./ChannelInfo";
 import Button from "./Button";
 import { MoreHorizontal } from "lucide-react";
 import formatNumber from "@/utils/formatNumber";
-import formatePublishDate from "@/utils/formatePublishDate";
-import { useState } from "react";
-import { twMerge } from "tailwind-merge";
+import VideoDescription from "./VideoDescription";
 
 const VideoDetails = ({ videoId }) => {
   const { data, isLoading } = useVideo(videoId);
-  const [showDesc, setShowDese] = useState(false);
 
   if (isLoading) return <div>Loading</div>;
 
@@ -64,35 +61,11 @@ const VideoDetails = ({ videoId }) => {
           </Button>
         </div>
       </div>
-      <section className="bg-[rgba(0,0,0,0.05)] rounded-xl p-3 text-sm relative">
-        <div className="flex items-center gap-[6px]  text-[#0f0f0f] font-semibold">
-          {formatNumber(viewCount)} views {formatePublishDate(publishedAt)}
-        </div>
-        <article
-          className={twMerge(
-            `overflow-hidden  relative`,
-            !showDesc && "mask max-h-[60px]"
-          )}
-        >
-          {description}
-        </article>
-
-        {showDesc ? (
-          <button
-            onClick={() => setShowDese(false)}
-            className="font-semibold  mt-10 p-0 "
-          >
-            Show less
-          </button>
-        ) : (
-          <button
-            onClick={() => setShowDese(true)}
-            className="absolute font-semibold left-[270px] bottom-3"
-          >
-            ...more
-          </button>
-        )}
-      </section>
+      <VideoDescription
+        viewCount={viewCount}
+        publishedAt={publishedAt}
+        description={description}
+      />
     </section>
   );
 };
