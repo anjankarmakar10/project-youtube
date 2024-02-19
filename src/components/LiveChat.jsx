@@ -1,3 +1,4 @@
+"use client";
 import { addMessages } from "@/redux/slices/chatSlice";
 import getRamdomEmoji from "@/utils/getRamdomEmoji";
 import getRamdomName from "@/utils/getRamdomName";
@@ -8,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ChatMessage } from "./ChatMessage";
 import Button from "./Button";
 
-const LiveChat = () => {
+const LiveChat = ({ hideChat }) => {
   const dispatch = useDispatch();
   const chats = useSelector((store) => store.chat.messages);
 
@@ -79,7 +80,10 @@ const LiveChat = () => {
         <Send type="submit" className="text-gray-500 mr-[-6px]" />
       </form>
       <div className="p-1  border-t">
-        <button className="font-medium text-sm px-4 w-full rounded-full hover:bg-[#0000001a] h-9">
+        <button
+          onClick={hideChat}
+          className="font-medium text-sm px-4 w-full rounded-full hover:bg-[#0000001a] h-9"
+        >
           Hide chat
         </button>
       </div>
