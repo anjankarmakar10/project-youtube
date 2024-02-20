@@ -6,6 +6,7 @@ import Button from "./Button";
 import { MoreHorizontal } from "lucide-react";
 import formatNumber from "@/utils/formatNumber";
 import VideoDescription from "./VideoDescription";
+import VideoComments from "./VideoComments";
 
 const VideoDetails = ({ videoId }) => {
   const { data, isLoading } = useVideo(videoId);
@@ -66,6 +67,7 @@ const VideoDetails = ({ videoId }) => {
         publishedAt={publishedAt}
         description={description}
       />
+      <VideoComments videoId={videoId} commentCount={commentCount} />
     </section>
   );
 };
