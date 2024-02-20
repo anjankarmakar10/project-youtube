@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import LiveChat from "./LiveChat";
+import SuggestionVideos from "./SuggestionVideos";
 
 const VideoSidebar = () => {
   const [showChat, setShowChat] = useState(false);
@@ -21,6 +22,7 @@ const VideoSidebar = () => {
           Show chat
         </button>
       )}
+      <SuggestionVideos />
     </section>
   );
 };

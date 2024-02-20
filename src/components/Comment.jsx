@@ -2,8 +2,6 @@ import formatePublishDate from "@/utils/formatePublishDate";
 import Image from "next/image";
 
 const Comment = ({ comment }) => {
-  console.log(comment);
-
   const {
     textDisplay,
     authorProfileImageUrl,
