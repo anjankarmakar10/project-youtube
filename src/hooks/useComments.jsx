@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 const useComments = (videoId) => {
   const getData = () =>
     fetch(
-      `${BASE_URL}/commentThreads?part=snippet%2Creplies&maxResults=50&key=${API_KEY}&videoId=${videoId}`
+      `${BASE_URL}/commentThreads?part=snippet%2Creplies&maxResults=20&key=${API_KEY}&videoId=${videoId}`
     ).then((res) => res.json());
 
   return useQuery({
