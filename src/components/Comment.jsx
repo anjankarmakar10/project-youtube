@@ -8,6 +8,7 @@ const Comment = ({ comment }) => {
     authorDisplayName,
     likeCount,
     publishedAt,
+    textOriginal,
   } = comment?.snippet?.topLevelComment?.snippet;
 
   return (
@@ -26,7 +27,11 @@ const Comment = ({ comment }) => {
             {formatePublishDate(publishedAt)}
           </span>
         </div>
-        <p className="text-sm">{textDisplay}</p>
+
+        <div
+          className="text-sm"
+          dangerouslySetInnerHTML={{ __html: textDisplay }}
+        />
         <div className="mt-1 flex items-center gap-1">
           <div>
             <svg
