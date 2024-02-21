@@ -12,6 +12,8 @@ const SearchBar = ({ showFullWidthSearch }) => {
   const [active, setActive] = useState(false);
 
   const searchCache = useSelector((store) => store.search);
+  const [activeIndex, setActiveIndex] = useState(-1);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,6 +46,35 @@ const SearchBar = ({ showFullWidthSearch }) => {
     );
   };
 
+  const handleKeyUp = (event) => {
+    const keyCode = event.keyCode;
+    if (searchQuery === "") return;
+
+    if (keyCode === 13) {
+      console.log(suggestion[activeIndex]);
+    }
+
+    if (suggestion.length === 0) return;
+
+    if (keyCode === 40) {
+      //user down
+
+      if (activeIndex === -1 || activeIndex === suggestion?.length - 1) {
+        setActiveIndex(0);
+      } else {
+        setActiveIndex((prev) => prev + 1);
+      }
+    } else if (keyCode === 38) {
+      // user up
+
+      if (activeIndex === -1 || activeIndex === 0) {
+        setActiveIndex(suggestion?.length - 1);
+      } else {
+        setActiveIndex((prev) => prev - 1);
+      }
+    }
+  };
+
   return (
     <>
       <form
@@ -54,6 +85,7 @@ const SearchBar = ({ showFullWidthSearch }) => {
       >
         <div className="flex items-center flex-grow max-w-[600px]">
           <input
+            onKeyUp={handleKeyUp}
             onFocus={() => {
               if (searchQuery) setActive(true);
             }}
@@ -77,10 +109,12 @@ const SearchBar = ({ showFullWidthSearch }) => {
 
       {active | searchQuery ? (
         <ul className="absolute right-4 left-4  top-14 rounded-2xl z-30  pt-4 pb-2 bg-slate-100 shadow-2xl md:right-[34%] md:left-[27%] ">
-          {suggestion.map((item) => (
+          {suggestion.map((item, index) => (
             <li
               key={item}
-              className="pr-6 pl-4 h-8 flex font-normal text-sm items-center gap-3 hover:bg-slate-300 "
+              className={`pr-6 pl-4 h-8 flex font-normal text-sm items-center gap-3 hover:bg-slate-300 ${
+                index === activeIndex && "bg-stone-300"
+              } `}
             >
               <SearchIcon size={18} color="#222" /> <span> {item} </span>
             </li>

@@ -56,38 +56,26 @@ const Sidebar = () => {
             <SidebarItem
               IconOrImgUrl={Clapperboard}
               title="Subscriptions"
-              url="/subscriptions"
+              url="/"
             />
           </SidebarSection>
           <hr />
           <SidebarSection visibleItemCount={5}>
-            <SidebarItem
-              IconOrImgUrl={Library}
-              title="Library"
-              url="/library"
-            />
-            <SidebarItem
-              IconOrImgUrl={History}
-              title="History"
-              url="/history"
-            />
+            <SidebarItem IconOrImgUrl={Library} title="Library" url="/" />
+            <SidebarItem IconOrImgUrl={History} title="History" url="/" />
             <SidebarItem
               IconOrImgUrl={PlaySquare}
               title="Your Videos"
-              url="/your-videos"
+              url="/"
             />
-            <SidebarItem
-              IconOrImgUrl={Clock}
-              title="Watch Later"
-              url="/playlist?list=WL"
-            />
+            <SidebarItem IconOrImgUrl={Clock} title="Watch Later" url="/" />
 
             {playlists.map((playlist) => (
               <SidebarItem
                 key={playlist.id}
                 IconOrImgUrl={ListVideo}
                 title={playlist.name}
-                url={`/playlist?list=${playlist.id}`}
+                url={`/`}
               />
             ))}
           </SidebarSection>
@@ -98,45 +86,33 @@ const Sidebar = () => {
                 key={subscription.id}
                 IconOrImgUrl={subscription.imgUrl}
                 title={subscription.channelName}
-                url={`/@${subscription.id}`}
+                url={`/`}
               />
             ))}
           </SidebarSection>
           <hr />
           <SidebarSection title="Explore">
-            <SidebarItem
-              IconOrImgUrl={Flame}
-              title="Trending"
-              url="/trending"
-            />
+            <SidebarItem IconOrImgUrl={Flame} title="Trending" url="/" />
 
-            <SidebarItem IconOrImgUrl={Music2} title="Music" url="/music" />
+            <SidebarItem IconOrImgUrl={Music2} title="Music" url="/" />
 
-            <SidebarItem IconOrImgUrl={Gamepad2} title="Gaming" url="/gaming" />
+            <SidebarItem IconOrImgUrl={Gamepad2} title="Gaming" url="/" />
 
-            <SidebarItem IconOrImgUrl={Trophy} title="Sport" url="/sport" />
+            <SidebarItem IconOrImgUrl={Trophy} title="Sport" url="/" />
           </SidebarSection>
 
           <hr />
           <SidebarSection>
-            <SidebarItem
-              IconOrImgUrl={Settings}
-              title="Settings"
-              url="/settings"
-            />
+            <SidebarItem IconOrImgUrl={Settings} title="Settings" url="/" />
 
-            <SidebarItem
-              IconOrImgUrl={Flag}
-              title="Report history"
-              url="/report"
-            />
+            <SidebarItem IconOrImgUrl={Flag} title="Report history" url="/" />
 
             <SidebarItem IconOrImgUrl={HelpCircle} title="Help" url="/help" />
 
             <SidebarItem
               IconOrImgUrl={MessageSquareWarning}
               title="Send feedback"
-              url="/feedback"
+              url="/"
             />
           </SidebarSection>
           <hr />
