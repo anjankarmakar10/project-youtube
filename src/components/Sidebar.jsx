@@ -1,10 +1,8 @@
 "use client";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavbarFirstSection } from "./NavbarFirstSection";
 
 import {
-  ChevronDown,
-  ChevronUp,
   Clapperboard,
   Clock,
   Youtube,
@@ -12,16 +10,9 @@ import {
   Gamepad2,
   Home,
   Library,
-  Lightbulb,
   ListVideo,
   Music2,
-  Newspaper,
   PlaySquare,
-  Podcast,
-  Radio,
-  Repeat,
-  Shirt,
-  ShoppingBag,
   Trophy,
   History,
   Settings,
@@ -30,21 +21,20 @@ import {
   MessageSquareWarning,
 } from "lucide-react";
 import Link from "next/link";
-import { Children, useState } from "react";
-import { twMerge } from "tailwind-merge";
-import Button, { buttonStyles } from "../components/Button";
 import { playlists, subscriptions } from "../utils/constants";
 import SidebarSection from "./SidebarSection";
 import SidebarItem from "./SidebarItem";
+import { close } from "@/redux/slices/sidebarSlice";
 
 const Sidebar = () => {
   const { isLargeOpen, isSmallOpen } = useSelector((state) => state.sidebar);
+  const dispatch = useDispatch();
 
   return (
     <>
       {isSmallOpen && (
         <div
-          onClick={close}
+          onClick={() => dispatch(close())}
           className="lg:hidden fixed z-[999] inset-0 bg-secondary-dark opacity-50"
         />
       )}
