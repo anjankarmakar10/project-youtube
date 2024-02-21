@@ -2,7 +2,6 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
-
 import ReduxProvider from "./ReduxProvider";
 import ReactQueryProvider from "./ReactQueryProvider";
 
@@ -23,7 +22,7 @@ export default function RootLayout({ children }) {
               <Navbar />
               <div className="flex grid-cols-[auto,1fr] flex-grow-1 overflow-auto">
                 <Sidebar />
-                <div className="overflow-x-hidden flex-1 px-8 pb-4">
+                <div className="overflow-x-hidden h-screen flex-1 px-8 pb-4">
                   {children}
                 </div>
               </div>

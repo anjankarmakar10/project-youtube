@@ -2,31 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.ytp-show-cards-title {
-  display: none !important;
-}
-
-.ytp-chrome-bottom,
-.ytp-chrome-top {
-  background-color: #333;
-  color: #fff;
-}
-
-.ytp-player {
-  background-color: #333;
-}
-
-.ytp-chrome-bottom,
-.ytp-chrome-top {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-}
-
-.ytp-chrome-bottom:hover,
-.ytp-chrome-top:hover {
-  opacity: 1;
-}
-
 .mask {
   mask-image: linear-gradient(
       to top,
