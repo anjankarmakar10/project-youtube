@@ -58,6 +58,7 @@ const SearchBar = ({ showFullWidthSearch }) => {
 
     if (keyCode === 13) {
       // Press Enter
+      console.log(suggestion[activeIndex]);
       router.push(
         `/results?search_query=${suggestion[activeIndex] || searchQuery}`
       );
@@ -90,7 +91,6 @@ const SearchBar = ({ showFullWidthSearch }) => {
     event.preventDefault();
     router.push(`/results?search_query=${searchQuery}`);
     setActive(false);
-    setActiveIndex(-1);
   };
 
   return (
