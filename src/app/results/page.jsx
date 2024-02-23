@@ -1,11 +1,32 @@
 "use client";
+import SearchVideoCard from "@/components/SearchVideoCard";
+import SearchVideoCardSkeleton from "@/components/SearchVideoCardSkeleton";
 import useSearch from "@/hooks/useSearch";
 
 const SearchPage = ({ searchParams }) => {
-  const { data } = useSearch(searchParams?.search_query);
+  const { data, isLoading } = useSearch(searchParams?.search_query);
 
-  console.log(data);
+  if (isLoading)
+    return (
+      <div className="flex flex-col gap-4 ">
+        {isLoading && (
+          <div className="flex flex-col gap-2">
+            {Array(6)
+              .fill("")
+              .map((item, index) => (
+                <SearchVideoCardSkeleton key={index} />
+              ))}
+          </div>
+        )}
+      </div>
+    );
 
-  return <div>Hello : {searchParams?.search_query}</div>;
+  return (
+    <section className="flex flex-col gap-4 ">
+      {data?.items?.map((search) => (
+        <SearchVideoCard key={search.id} search={search} />
+      ))}
+    </section>
+  );
 };
 export default SearchPage;
