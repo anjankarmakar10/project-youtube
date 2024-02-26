@@ -4,7 +4,6 @@ import useChannelInfo from "@/hooks/useChannelIfno";
 import formatNumber from "@/utils/formatNumber";
 import Image from "next/image";
 import Link from "next/link";
-import Button from "@/components/Button";
 const ChannelInfo = ({ channelId }) => {
   const { data, isLoading } = useChannelInfo(channelId);
 
