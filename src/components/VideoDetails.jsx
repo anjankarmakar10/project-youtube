@@ -17,8 +17,6 @@ const VideoDetails = ({ videoId }) => {
   const { title, description, channelId, publishedAt } = video?.snippet;
   const { commentCount, likeCount, viewCount } = video?.statistics;
 
-  console.log(video?.snippet);
-
   return (
     <section className="my-3 flex flex-col gap-3">
       <h1 className="text-xl line-clamp-2 font-bold">{title}</h1>
