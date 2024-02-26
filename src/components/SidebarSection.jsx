@@ -1,5 +1,5 @@
 import { Children, useState } from "react";
-import Button from "./Button";
+import Button from "@/components/Button";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const SidebarSection = ({

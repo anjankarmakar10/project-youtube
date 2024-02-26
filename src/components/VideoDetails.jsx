@@ -2,7 +2,7 @@
 
 import useVideo from "@/hooks/useVideo";
 import ChannelInfo from "./ChannelInfo";
-import Button from "./Button";
+import Button from "@/components/Button";
 import { MoreHorizontal } from "lucide-react";
 import formatNumber from "@/utils/formatNumber";
 import VideoDescription from "./VideoDescription";
